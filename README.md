@@ -2,6 +2,12 @@
 
 Tests cordova-parse-push plugin.
 
+## Installing
+
+```
+cd www && bower install
+```
+
 ## Running
 
 ```
