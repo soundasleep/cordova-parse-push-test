@@ -2,9 +2,9 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
         "file": "plugins/org.jevon.cordova.parse.pushplugin/www/parse-push.js",
-        "id": "org.jevon.cordova.parse.pushplugin.ParsePush",
+        "id": "org.jevon.cordova.parse.pushplugin.ParsePushPlugin",
         "clobbers": [
-            "window.parsePush"
+            "window.parsePushPlugin"
         ]
     }
 ];

@@ -1,3 +1,8 @@
 node_modules/
 .settings/
+**/bower_components/
+platforms/**/ant-build/
+platforms/android/src/
+platforms/android/assets/
+plugins/
 

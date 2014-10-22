@@ -1,0 +1,25 @@
+{
+  "name": "cordova-parse-push-test",
+  "version": "0.0.1",
+  "authors": [
+    "Jevon Wright <jevon@jevon.org>"
+  ],
+  "keywords": [
+    "android",
+    "test",
+    "cordova",
+    "parse"
+  ],
+  "license": "GPLv3",
+  "homepage": "https://github.com/soundasleep/cordova-parse-push-test",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}
