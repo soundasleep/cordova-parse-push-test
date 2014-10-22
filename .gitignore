@@ -4,5 +4,4 @@ node_modules/
 platforms/**/ant-build/
 platforms/android/src/
 platforms/android/assets/
-plugins/
 

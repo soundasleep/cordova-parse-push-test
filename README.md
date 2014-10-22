@@ -8,6 +8,12 @@ Tests cordova-parse-push plugin.
 cd www && bower install
 ```
 
+To refresh the `cordova-parse-push` plugin from Github
+
+```
+node_modules/.bin/cordova plugin rm org.jevon.cordova.parse.pushplugin && node_modules/.bin/cordova plugin add https://github.com/soundasleep/cordova-parse-push
+```
+
 ## Running
 
 ```

@@ -1,4 +1,4 @@
-cordova.define("org.jevon.cordova.parse.pushplugin.ParsePushPlugin", function(require, exports, module) { var parsePushPlugin = {
+var parsePushPlugin = {
 	initialize: function(appId, clientKey, success, failure) {
 		cordova.exec(
 			success,
@@ -11,4 +11,3 @@ cordova.define("org.jevon.cordova.parse.pushplugin.ParsePushPlugin", function(re
 };
 
 module.exports = parsePushPlugin;
-});

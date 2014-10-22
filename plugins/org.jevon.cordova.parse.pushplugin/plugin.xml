@@ -1,0 +1,31 @@
+?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+		id="org.jevon.cordova.parse.pushplugin"
+		version="0.0.1">
+	<name>cordova-parse-push</name>
+	<description>Cordova Parse Push notifications plugin</description>
+	
+	<!-- one or more elements listing the files/directories to be copied into www/ directory -->
+	<!-- 
+	<asset src="www/parse-push.js" target="parse-push.js" />
+	-->
+	
+	<!-- both copies assets, and adds an entry to www/cordova_plugins.js -->
+	<js-module src="www/parse-push.js" name="ParsePushPlugin">
+		<clobbers target="window.parsePushPlugin" />
+	</js-module>
+	
+	<!-- android -->
+	<platform name="android">
+		<config-file target="res/xml/config.xml" parent="plugins">
+			<feature name="ParsePushPlugin">
+				<param name="android-package" value="org.jevon.cordova.parse.pushplugin.ParsePushPlugin" />
+			</feature>
+		</config-file>
+		
+		<!-- 
+		<source-file src="src/android/parse/Parse-1.3.8.jar" target-dir="libs" framework="true" />
+		-->
+		<source-file src="src/android/org/jevon/cordova/parse/pushplugin/ParsePushPlugin.java" target-dir="src/org/jevon/cordova/parse/pushplugin" />
+	</platform>
+</plugin>
