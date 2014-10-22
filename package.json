@@ -1,0 +1,28 @@
+{
+  "name": "cordova-parse-push-test",
+  "version": "0.0.1",
+  "description": "Test application for cordova-parse-push plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soundasleep/cordova-parse-push-test"
+  },
+  "keywords": [
+    "cordova",
+    "parse",
+    "push",
+    "android"
+  ],
+  "author": "Jevon Wright",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/soundasleep/cordova-parse-push-test/issues"
+  },
+  "homepage": "https://github.com/soundasleep/cordova-parse-push-test",
+  "dependencies": {
+    "cordova": "^4.0.0"
+  }
+}
