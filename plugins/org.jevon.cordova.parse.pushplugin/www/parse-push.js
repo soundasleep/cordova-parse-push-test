@@ -7,6 +7,33 @@ var parsePushPlugin = {
 			'initialize',
 			[appId, clientKey]
 		);
+	},
+	subscribe: function(channel, success, failure) {
+		cordova.exec(
+			success,
+			failure,
+			'ParsePushPlugin',
+			'subscribe',
+			[channel]
+		);
+	},
+	unsubscribe: function(channel, success, failure) {
+		cordova.exec(
+			success,
+			failure,
+			'ParsePushPlugin',
+			'unsubscribe',
+			[channel]
+		);
+	},
+	getSubscriptions: function(success, failure) {
+		cordova.exec(
+			success,
+			failure,
+			'ParsePushPlugin',
+			'getSubscriptions',
+			[]
+		);
 	}
 };
 

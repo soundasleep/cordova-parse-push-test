@@ -49,7 +49,7 @@ parsePush.getPushListeners(function(callbacks), function(error))
 
 parsePush.sendPushInBackground("channel", data, function(success), function(error))
 // "data" is a JSON object with "alert", "expirationTime", "expirationTimeInterval", "message" 
-and any other extra data
+// and any other extra data
 
 // TODO what do these methods do?
 parsePush.getInstallationId(function(id))
