@@ -26,7 +26,57 @@
 		
 		<source-file src="lib/bolts/bolts-android-1.1.3.jar" target-dir="libs" framework="true" />
 		<source-file src="lib/parse/Parse-1.7.1.jar" target-dir="libs" framework="true" />
+		<source-file src="src/android/org/jevon/cordova/parse/pushplugin/ParsePushApplication.java" target-dir="src/org/jevon/cordova/parse/pushplugin" />
 		<source-file src="src/android/org/jevon/cordova/parse/pushplugin/ParsePushPlugin.java" target-dir="src/org/jevon/cordova/parse/pushplugin" />
+				
+		<preference name="PARSE_APP_ID" />
+		<preference name="PARSE_CLIENT_SECRET" />
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+		    <meta-data android:name="ParseAppId" android:value="$PARSE_APP_ID" />
+			<meta-data android:name="ParseClientSecret" android:value="$PARSE_CLIENT_SECRET" />
+		    
+			<!-- "Add the following service and broadcast receiver definitions to AndroidManifest.xml 
+				immediately before the closing </application> tag" -->
+			<service android:name="com.parse.PushService" />
+			<receiver android:name="com.parse.ParseBroadcastReceiver">
+				<intent-filter>
+					<action android:name="android.intent.action.BOOT_COMPLETED" />
+					<action android:name="android.intent.action.USER_PRESENT" />
+				</intent-filter>
+			</receiver>
+			<receiver android:name="com.parse.ParsePushBroadcastReceiver" android:exported="false">
+				<intent-filter>
+					<action android:name="com.parse.push.intent.RECEIVE" />
+					<action android:name="com.parse.push.intent.DELETE" />
+					<action android:name="com.parse.push.intent.OPEN" />
+				</intent-filter>
+			</receiver>
+			<receiver android:name="com.parse.GcmBroadcastReceiver"
+					android:permission="com.google.android.c2dm.permission.SEND">
+				<intent-filter>
+					<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+					<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+					<category android:name="$PACKAGE_NAME" />
+				</intent-filter>
+			</receiver>
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/*">
+		    <!-- "Also add the permissions below, typically immediately before the opening <application> tag" -->
+			<uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+			<uses-permission android:name="android.permission.VIBRATE" />
+			<uses-permission android:name="android.permission.WAKE_LOCK" />
+			<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+			<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+			
+			<permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE"
+				android:protectionLevel="signature" />
+			<uses-permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" />
+		</config-file>
+				
 	</platform>
 	
 </plugin>

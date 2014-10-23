@@ -1,17 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="org.jevon.cordova.parse-push-test" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
-    <plugins>
-        <feature name="ParsePushPlugin">
-            <param name="android-package" value="org.jevon.cordova.parse.pushplugin.ParsePushPlugin" />
-        </feature>
-    </plugins>
+    <preference name="PARSE_APP_ID" value="IJ1M9zwnbfYIhsd4WIe9R9jSLr6Amt6KVrJZSaz3" />
+    <preference name="PARSE_CLIENT_SECRET" value="szZJuqN4y0Sa40NTPJROZTXikUtS1K33bviXNZcA" />
     <name>ParsePushTest</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        A sample Apache Cordova application illustrating the Parse Push plugin.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="jevon@jevo.org" href="https://jevon.org">
+        Jevon Wright
     </author>
     <content src="index.html" />
     <access origin="*" />

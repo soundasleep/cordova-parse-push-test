@@ -8,20 +8,17 @@
             "res/xml/config.xml": {
                 "parents": {
                     "/*": [],
-                    "plugins": [
-                        {
-                            "xml": "<feature name=\"ParsePushPlugin\"><param name=\"android-package\" value=\"org.jevon.cordova.parse.pushplugin.ParsePushPlugin\" /></feature>",
-                            "count": 1
-                        }
-                    ]
+                    "plugins": []
+                }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/manifest/application": [],
+                    "/*": []
                 }
             }
         }
     },
-    "installed_plugins": {
-        "org.jevon.cordova.parse.pushplugin": {
-            "PACKAGE_NAME": "org.jevon.cordova.parse_push_test"
-        }
-    },
+    "installed_plugins": {},
     "dependent_plugins": {}
 }
