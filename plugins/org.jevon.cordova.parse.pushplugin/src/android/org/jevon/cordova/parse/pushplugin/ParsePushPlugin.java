@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import com.parse.Parse;
+import com.parse.ParseInstallation;
 
 public class ParsePushPlugin extends CordovaPlugin {
 	
@@ -23,10 +24,21 @@ public class ParsePushPlugin extends CordovaPlugin {
 	
 	private void initialize(final CallbackContext context, final JSONArray args) throws JSONException {
 		if (args.length() >= 1) {
-			String appId = args.getString(0);
-			String clientKey = args.getString(1);
-			Parse.initialize(cordova.getActivity(), appId, clientKey);
-			context.success();
+			final String appId = args.getString(0);
+			final String clientKey = args.getString(1);
+			
+			// "exec() to initialize blocked the main thread; Plugin should use CordovaInterface.getThreadPool()"
+			cordova.getThreadPool().execute(new Runnable() {
+				@Override
+				public void run() {
+					Parse.initialize(cordova.getActivity(), appId, clientKey);
+					
+					// "Also, save the current installation to Parse"
+					ParseInstallation.getCurrentInstallation().saveInBackground();
+					
+					context.success();
+				}
+			});
 		} else {
 			context.error("Expected two arguments");
 		}
