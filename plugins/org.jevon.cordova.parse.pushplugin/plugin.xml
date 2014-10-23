@@ -2,6 +2,7 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
 		id="org.jevon.cordova.parse.pushplugin"
 		version="0.0.1">
+		
 	<name>cordova-parse-push</name>
 	<description>Cordova Parse Push notifications plugin</description>
 	
@@ -23,9 +24,9 @@
 			</feature>
 		</config-file>
 		
-		<!-- 
-		<source-file src="src/android/parse/Parse-1.3.8.jar" target-dir="libs" framework="true" />
-		-->
+		<source-file src="lib/bolts/bolts-android-1.1.3.jar" target-dir="libs" framework="true" />
+		<source-file src="lib/parse/Parse-1.7.1.jar" target-dir="libs" framework="true" />
 		<source-file src="src/android/org/jevon/cordova/parse/pushplugin/ParsePushPlugin.java" target-dir="src/org/jevon/cordova/parse/pushplugin" />
 	</platform>
+	
 </plugin>
