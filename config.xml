@@ -4,7 +4,7 @@
     <description>
         A sample Apache Cordova application illustrating the Parse Push plugin.
     </description>
-    <author email="jevon@jevo.org" href="https://jevon.org">
+    <author email="jevon@jevon.org" href="https://jevon.org">
         Jevon Wright
     </author>
     <content src="index.html" />

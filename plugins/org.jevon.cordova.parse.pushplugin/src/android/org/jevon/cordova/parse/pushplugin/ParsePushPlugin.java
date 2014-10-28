@@ -17,6 +17,7 @@ public class ParsePushPlugin extends CordovaPlugin {
 	public static final String ACTION_SUBSCRIBE = "subscribe";
 	public static final String ACTION_UNSUBSCRIBE = "unsubscribe";
 	public static final String ACTION_GETSUBSCRIPTIONS = "getSubscriptions";
+	public static final String ACTION_GETINSTALLATIONID = "getInstallationId";
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -34,6 +35,10 @@ public class ParsePushPlugin extends CordovaPlugin {
 		}
 		if (action.equals(ACTION_GETSUBSCRIPTIONS)) {
 			this.getSubscriptions(callbackContext, args);
+			return true;
+		}
+		if (action.equals(ACTION_GETINSTALLATIONID)) {
+			this.getInstallationId(callbackContext, args);
 			return true;
 		}
 		// TODO more actions...
@@ -66,8 +71,13 @@ public class ParsePushPlugin extends CordovaPlugin {
 		if (args.length() >= 1) {
 			final String channel = args.getString(0);
 			
-			ParsePush.subscribeInBackground(channel);
-			context.success();
+			cordova.getThreadPool().execute(new Runnable() {
+				@Override
+				public void run() {
+					ParsePush.subscribeInBackground(channel);
+					context.success();
+				}
+			});
 		} else {
 			context.error("Expected one argument");
 		}
@@ -77,8 +87,13 @@ public class ParsePushPlugin extends CordovaPlugin {
 		if (args.length() >= 1) {
 			final String channel = args.getString(0);
 			
-			ParsePush.unsubscribeInBackground(channel);
-			context.success();
+			cordova.getThreadPool().execute(new Runnable() {
+				@Override
+				public void run() {		
+					ParsePush.unsubscribeInBackground(channel);
+					context.success();
+				}
+			});
 		} else {
 			context.error("Expected one argument");
 		}
@@ -87,5 +102,10 @@ public class ParsePushPlugin extends CordovaPlugin {
 	private void getSubscriptions(final CallbackContext context, final JSONArray args) throws JSONException {
 		List<String> subscriptions = ParseInstallation.getCurrentInstallation().getList("channels");
 		context.success(new JSONArray(subscriptions));
+	}	
+	
+	private void getInstallationId(final CallbackContext context, final JSONArray args) throws JSONException {
+		String id = ParseInstallation.getCurrentInstallation().getInstallationId();
+		context.success(id);
 	}
 }

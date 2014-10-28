@@ -34,6 +34,15 @@ var parsePushPlugin = {
 			'getSubscriptions',
 			[]
 		);
+	},
+	getInstallationId: function(success, failure) {
+		cordova.exec(
+			success,
+			failure,
+			'ParsePushPlugin',
+			'getInstallationId',
+			[]
+		);
 	}
 };
 
