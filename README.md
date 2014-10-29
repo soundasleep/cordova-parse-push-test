@@ -1,6 +1,8 @@
 # cordova-parse-push-test
 
-Tests cordova-parse-push plugin.
+Tests the [cordova-parse-push plugin](https://github.com/soundasleep/cordova-parse-push).
+
+![Screenshot image](https://raw.githubusercontent.com/soundasleep/cordova-parse-push-test/master/screenshot.png)
 
 ## Installing
 
