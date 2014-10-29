@@ -9,9 +9,4 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    
-    <platform name="android">
-		<preference name="PARSE_APP_ID" value="IJ1M9zwnbfYIhsd4WIe9R9jSLr6Amt6KVrJZSaz3" />
-		<preference name="PARSE_CLIENT_SECRET" value="szZJuqN4y0Sa40NTPJROZTXikUtS1K33bviXNZcA" />
-	</platform>
 </widget>

@@ -5,14 +5,12 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.util.Log;
 
 import com.parse.Parse;
 
 public class ParsePushApplication extends Application {
 	@Override
 	public void onCreate() {
-		Log.i("ParsePushApplication", "onCreate");
 		super.onCreate();
 		
 		Context context = this.getApplicationContext();
@@ -34,9 +32,6 @@ public class ParsePushApplication extends Application {
 		}
 		
 		// initialize the Parse SDK
-		Log.i("ParsePushApplication", "about to initialize");
-		Parse.initialize(this, appId, clientSecret);
-		Log.i("ParsePushApplication", "initialize complete");
-		
+		Parse.initialize(this, appId, clientSecret);		
 	}
 }

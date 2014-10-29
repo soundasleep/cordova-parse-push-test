@@ -9,7 +9,7 @@ Based on [hazemhagrass/push-parse](https://github.com/hazemhagrass/push-parse) a
 ## Installation
 
 ```
-cordova plugin add https://github.com/soundasleep/cordova-parse-push
+plugin add https://github.com/soundasleep/cordova-parse-push --variable PARSE_APP_ID=abc123 --variable PARSE_CLIENT_SECRET=abc123
 ```
 
 Define your Parse AppId and SecretKey in your ``config.xml``:
@@ -31,47 +31,57 @@ document.addEventListener("deviceready", function() {
 }, false);
 ```
 
-## Methods
+Finally add the custom `ParsePushApplication` to your `AndroidManifest.xml`, 
+o that Parse can be initialised at application startup (necessary to register the push handler):
 
-TODO none of these methods are implemented yet, but this is the intended interface:
-
-```javascript
-parsePush.initialize(function(success), function(error))
-// not actually necessary, App is initialised with secrets above
-
-parsePush.subscribe("channel", function(success), function(error))
-
-parsePush.unsubscribe("channel", function(success), function(error))
-
-parsePush.getSubscriptions(function(channels))
-// "channels" is a list of channels subscribed to
-
-parsePush.addPushListener("name", function(push), function(success), function(error))
-// "push" is a JSON object with "alert", "uri", "title" and any other extra data
-
-parsePush.removePushListener("name", function(success), function(error))
-
-parsePush.getPushListeners(function(callbacks), function(error))
-// "callbacks" is a JSON object with "callback_name": callback
-
-parsePush.sendPushInBackground("channel", data, function(success), function(error))
-// "data" is a JSON object with "alert", "expirationTime", "expirationTimeInterval", "message" 
-// and any other extra data
-
-// TODO what do these methods do?
-parsePush.getInstallationId(function(id))
+```
+  <application android:name="org.jevon.cordova.parse.pushplugin.ParsePushApplication" ... /> 
 ```
 
-NOTE: `sendPushInBackground()` requires the unsafe _Client Push Enabled_ setting in the 
-_Push Notifications_ settings of your Parse app: see [Sending Pushes](https://www.parse.com/docs/push_guide#top/Android)
- 
-## Building
+## Methods
 
-TODO
+```javascript
+parsePush.initialize("appId", "clientKey", function(success), function(error));
+// not actually necessary, App is initialised with secrets above at startup
+
+parsePush.subscribe("channel", function(success), function(error));
+
+parsePush.unsubscribe("channel", function(success), function(error));
+
+parsePush.getSubscriptions(function(channels), function(error));
+// "channels" is a list of channels subscribed to
+
+parsePush.getInstallationId(function(id), function(error));
+```
+
+## Sending pushes
+
+When you log into your Parse dashboard, you should send a JSON push with a URI e.g.:
+
+```json
+{ "uri": "https://github.com/soundasleep/cordova-parse-push", "alert": "This is a push notification", "title": "cordova-parse-push" }
+```
+
+When the push notification is opened, the system will open up the activity (or request the activities) 
+that can handle that URI. If you do not specify a URI, an exception 
+_ActivityNotFoundException: No Activity found to handle Intent_ will occur when 
+[trying to open an Intent with no URI](http://stackoverflow.com/questions/26154855/exception-when-opening-parse-push-notification).
+
+If you'd like to override the default push notification open activity, you might want to 
+[override the ParsePushBroadcastReceiver](http://stackoverflow.com/questions/26154855/exception-when-opening-parse-push-notification).
+
+## Changing the push icon
+
+Look at the [Customizing Notification Icons](https://parse.com/docs/push_guide#top/Android) 
+section of the Parse manual, and define a drawable resource in your project:
+
+```xml
+<meta-data android:name="com.parse.push.notification_icon" android:resource="@drawable/push_icon"/>
+``` 
 
 ## Testing
 
-TODO
+This project is demonstrated by the [cordova-parse-push-test](https://github.com/soundasleep/cordova-parse-push-test) example project.
 
 ## Developing
 
