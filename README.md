@@ -6,7 +6,6 @@ Tests cordova-parse-push plugin.
 
 ```
 cd www && bower install
-
 ```
 
 To refresh the `cordova-parse-push` plugin from Github
